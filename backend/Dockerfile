@@ -1,20 +1,12 @@
-FROM node:14.4.0-buster-slim
-
-ARG NODE_ENV=production
-ENV NODE_ENV $NODE_ENV
+FROM node
 
 WORKDIR /app
 
-ARG PORT=8080
-ENV PORT $PORT
+COPY package.json ./
 
-COPY package.json package-lock.json ./
-
-RUN npm ci
+RUN npm install
 
 COPY . /app
 
-USER node
-
-CMD [ "node", "src/server.js" ]
+CMD ["node", "src/server.js"]
 

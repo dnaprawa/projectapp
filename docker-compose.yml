@@ -5,11 +5,10 @@ services:
     image: reactjs-app
     build:
       context: ./frontend
-      args:
-        NODE_ENV: production
-        REACT_APP_SERVICE_HOST: http://localhost:8080
+    environment: 
+      - REACT_APP_SERVICE_HOST=http://localhost:8080 
     ports:
-      - "3000:8080"
+      - "3001:3000"
     depends_on: 
       - backend
 
@@ -17,8 +16,5 @@ services:
     image: nodejs-app
     build:
       context: ./backend
-      args:
-        NODE_ENV: production
-        PORT: "8080"
     ports:
       - "8080:8080"
